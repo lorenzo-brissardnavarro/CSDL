@@ -35,8 +35,8 @@ void Jeu::demarrer() {
             col--;
             ligne--;
 
-            if (grille.getGrille(ligne, col) != 0) {
-                texte = "\033[31mLa place est deja prise par un autre nombre\033[0m";
+            if (grille.getGrille(ligne, col) == grille.getSolution(ligne, col)) {
+                texte = "\033[31mLa place contient deja le bon nombre\033[0m";
             } else if (grille.verifierLigne(ligne, col, valeur) == false) {
                 texte = "\033[31mChiffre deja present sur la ligne\033[0m";
             } else if (grille.verifierColonne(col, ligne, valeur) == false) {
@@ -50,4 +50,5 @@ void Jeu::demarrer() {
         }
         cout << texte << endl;
     } while (grille.grilleComplete() != true);
+    texte = "\033[32mBravo, vous avez resolu le sudoku !\033[0m";
 }
