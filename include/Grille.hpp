@@ -1,17 +1,19 @@
 #ifndef GRILLE_HPP
 #define GRILLE_HPP
+#include "json.hpp"
 
 class Grille {
 
 private:
 
-    int taille;
+    int grille[9][9];
 
 public:
 
     Grille();
 
-    void initialiser();
+    nlohmann::json initialiser();
+    void remplirGrille(const nlohmann::json& value);
     void afficher();
 };
 

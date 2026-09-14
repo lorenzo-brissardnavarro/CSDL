@@ -8,8 +8,7 @@ Jeu::Jeu()
 
 void Jeu::demarrer() {
 
-    cout << "Demarrage du jeu (exemple fictif).\n";
-
-    grille.initialiser();
+    nlohmann::json sudoku = grille.initialiser();
+    grille.remplirGrille(sudoku);
     grille.afficher();
 }
