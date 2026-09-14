@@ -20,6 +20,7 @@ public:
     void afficher();
     bool verifierLigne(int ligne, int colActuelle, int valeur);
     bool verifierColonne(int col, int ligneActuelle, int valeur);
+    bool verifierCarre(int ligne, int col, int valeur);
     bool grilleComplete();
     int getGrille(int ligne, int col);
     void setGrille(int ligne, int col, int valeur);

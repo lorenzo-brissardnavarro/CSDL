@@ -86,6 +86,23 @@ bool Grille::verifierColonne(int col, int ligneActuelle, int valeur) {
     return true;
 }
 
+bool Grille::verifierCarre(int ligne, int col, int valeur) {
+    // On trouve dans quel groupe de 3 se trouve la valeur et on regarde les cases alentours
+    int startLigne = (ligne / 3) * 3;
+    int startCol = (col / 3) * 3;
+    for (int i = startLigne; i < startLigne + 3; i++) {
+        for (int j = startCol; j < startCol + 3; j++) {
+            if (i != ligne || j != col) {
+                if (this->grille[i][j] == valeur) {
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
+}
+
+
 bool Grille::grilleComplete() {
     // vérifier si la grille est entièrement et correctement complétée
     for (int ligne = 0; ligne < 9; ligne++) {

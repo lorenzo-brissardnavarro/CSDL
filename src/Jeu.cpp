@@ -41,6 +41,8 @@ void Jeu::demarrer() {
                 texte = "\033[31mChiffre deja present sur la ligne\033[0m";
             } else if (grille.verifierColonne(col, ligne, valeur) == false) {
                 texte = "\033[31mChiffre deja present sur la colonne\033[0m";
+            } else if (grille.verifierCarre(ligne, col, valeur) == false) {
+                texte = "\033[31mChiffre deja present dans le carre\033[0m";
             } else {
                 grille.setGrille(ligne, col, valeur);
                 texte = "\033[32mChiffre ajoute\033[0m";
