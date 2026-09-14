@@ -8,8 +8,8 @@ using namespace std;
 using json = nlohmann::json;
 
 
-
-Grille::Grille() 
+Grille::Grille()
+    : grille{}, solution{}
 {
 }
 
@@ -99,9 +99,9 @@ bool Grille::grilleComplete() {
 }
 
 int Grille::getGrille(int ligne, int col) {
-    return this->grille[ligne-1][col-1];
+    return this->grille[ligne][col];
 }
 
 void Grille::setGrille(int ligne, int col, int valeur) {
-    this->grille[ligne-1][col-1] = valeur;
+    this->grille[ligne][col] = valeur;
 }
