@@ -1,7 +1,8 @@
 CXX = g++ # le compilateur utilisé
 
-CXXFLAGS = -Wall -Wextra -std=c++17 -Iinclude -I/ucrt64/include # les options passées
-LDLIBS = -lcpr
+CXXFLAGS = -Wall -Wextra -std=c++17 -Iinclude # les options passées
+LDLIBS = -lcpr $(shell pkg-config --libs sdl3)
+CPPFLAGS = $(shell pkg-config --cflags sdl3)
 
 SRC = src/main.cpp src/Grille.cpp src/Jeu.cpp # la liste des fichiers .cpp à compiler ensemble
 
@@ -11,7 +12,7 @@ all: $(BIN)
 
 # commande de compilation
 $(BIN): $(SRC)
-	$(CXX) $(CXXFLAGS) $(SRC) -o $(BIN) $(LDLIBS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(SRC) -o $(BIN) $(LDLIBS)
 
 clean:
 	rm -f $(BIN)
