@@ -1,9 +1,10 @@
 #include "Jeu.hpp"
-#include <SDL3/SDL.h>
-#include <iostream>
+#include "Window.hpp"
 using namespace std;
 
 int main() {
-    Jeu jeu;
-    jeu.demarrer();
+    // Jeu jeu;
+    // jeu.demarrer();
+    Window window("Fenêtre SDL", 800, 600);
+    window.windowInitialisation();
 }
