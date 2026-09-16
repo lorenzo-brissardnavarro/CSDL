@@ -2,6 +2,7 @@
 #define GRILLE_HPP
 #include "json.hpp"
 #include <utility>
+#include <SDL3/SDL.h>
 
 class Grille {
 
@@ -25,6 +26,7 @@ public:
     int getGrille(int ligne, int col);
     int getSolution(int ligne, int col);
     void setGrille(int ligne, int col, int valeur);
+    void dessiner(SDL_Renderer* pRenderer);
 };
 
 #endif

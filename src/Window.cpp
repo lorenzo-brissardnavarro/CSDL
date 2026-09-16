@@ -37,3 +37,20 @@ bool Window::windowInitialisation() {
 SDL_Renderer* Window::getRenderer(){
     return this->pRenderer;
 }
+
+// Getter pour récupérer le pointeur
+SDL_Window* Window::getWindow(){
+    return this->pWindow;
+}
+
+
+// Destructeur pour libérer la mémoire
+Window::~Window() {
+    if (pRenderer != nullptr) {
+        SDL_DestroyRenderer(pRenderer);
+    }
+    if (pWindow != nullptr) {
+        SDL_DestroyWindow(pWindow);
+    }
+    SDL_Quit();
+}

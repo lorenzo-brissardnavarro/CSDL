@@ -19,6 +19,9 @@ public:
 
     bool windowInitialisation();
     SDL_Renderer* getRenderer();
+    SDL_Window* getWindow();
+
+    ~Window();
 };
 
 #endif

@@ -1,4 +1,5 @@
 #include "Grille.hpp"
+#include "GameObject.hpp"
 #include "json.hpp"
 #include <iostream>
 #include <cpr/cpr.h>
@@ -140,4 +141,19 @@ int Grille::getSolution(int ligne, int col) {
 
 void Grille::setGrille(int ligne, int col, int valeur) {
     this->grille[ligne][col] = valeur;
+}
+
+
+///////////////////////////////////////////////////////////// Méthode interface graphique ///////////////////////////////////////////////
+
+void Grille::dessiner(SDL_Renderer* pRenderer) {
+    for (int i = 0; i < 9; ++i) {
+        for (int j = 0; j < 9; ++j) {
+            int x = 175 + j * 50;
+            int y = 75 + i * 50;
+
+            Case caseSudoku(x, y, 50, 50);
+            caseSudoku.dessiner(pRenderer);
+        }
+    }
 }

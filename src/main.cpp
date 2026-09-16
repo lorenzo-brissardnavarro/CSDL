@@ -4,12 +4,11 @@
 using namespace std;
 
 int main() {
-    // Jeu jeu;
-    // jeu.demarrer();
+
     Window window("Fenêtre SDL", 800, 600);
     window.windowInitialisation();
 
-    Rectangle caseTest(100, 100, 50, 50);
+    Jeu jeu;
 
     SDL_Event events;
     bool isOpen = true;
@@ -26,7 +25,9 @@ int main() {
         SDL_RenderClear(window.getRenderer());
 
         SDL_SetRenderDrawColor(window.getRenderer(), 0, 0, 0, 0);
-        caseTest.dessiner(window.getRenderer());
+        jeu.demarrerInterface(window.getRenderer());
         SDL_RenderPresent(window.getRenderer());
+
+        SDL_Delay(16);
     }
 }

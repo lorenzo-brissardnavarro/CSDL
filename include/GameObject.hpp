@@ -30,12 +30,12 @@ public:
     void dessiner(SDL_Renderer* pRenderer) override;
 };
 
-// Classe enfant rectangle qui hérite de la classe GameObject
-class Rectangle : public GameObject {
+// Classe enfant case qui hérite de la classe GameObject
+class Case : public GameObject {
 
 public:
 
-    Rectangle(int coordonneeX, int coordonneeY, int tailleX, int tailleY);
+    Case(int coordonneeX, int coordonneeY, int tailleX, int tailleY);
 
     void dessiner(SDL_Renderer* pRenderer) override;
 };
