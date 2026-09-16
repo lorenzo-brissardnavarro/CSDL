@@ -1,5 +1,6 @@
 #include "Jeu.hpp"
 #include "Window.hpp"
+#include "GameObject.hpp"
 using namespace std;
 
 int main() {
@@ -7,6 +8,8 @@ int main() {
     // jeu.demarrer();
     Window window("Fenêtre SDL", 800, 600);
     window.windowInitialisation();
+
+    Rectangle caseTest(100, 100, 50, 50);
 
     SDL_Event events;
     bool isOpen = true;
@@ -19,5 +22,11 @@ int main() {
                     break;
             }
         }
+        SDL_SetRenderDrawColor(window.getRenderer(), 255, 255, 255, 255);
+        SDL_RenderClear(window.getRenderer());
+
+        SDL_SetRenderDrawColor(window.getRenderer(), 0, 0, 0, 0);
+        caseTest.dessiner(window.getRenderer());
+        SDL_RenderPresent(window.getRenderer());
     }
 }

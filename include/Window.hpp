@@ -18,6 +18,7 @@ public:
     Window(std::string titre, int largeur, int hauteur);
 
     bool windowInitialisation();
+    SDL_Renderer* getRenderer();
 };
 
 #endif

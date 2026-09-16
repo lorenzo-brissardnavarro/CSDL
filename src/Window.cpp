@@ -29,6 +29,11 @@ bool Window::windowInitialisation() {
         SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "[DEBUG] > %s", SDL_GetError());         
         SDL_Quit();         
         return false;     
-    }       
+    }
     return true;     
+}
+
+// Getter pour récupérer le pointeur
+SDL_Renderer* Window::getRenderer(){
+    return this->pRenderer;
 }
