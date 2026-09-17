@@ -15,7 +15,12 @@ bool Window::windowInitialisation() {
     if (!SDL_Init(SDL_INIT_VIDEO)) {         
         SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "[DEBUG] > %s", SDL_GetError());         
         return false;     
-    }       
+    }
+    
+    if (!TTF_Init()) {
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "[DEBUG] > %s", SDL_GetError());
+        return EXIT_FAILURE;
+    }
 
     pWindow = SDL_CreateWindow(this->titre.c_str(), this->largeur, this->hauteur, 0);       
     if (pWindow == nullptr) {         
@@ -52,5 +57,6 @@ Window::~Window() {
     if (pWindow != nullptr) {
         SDL_DestroyWindow(pWindow);
     }
+    TTF_Quit();
     SDL_Quit();
 }

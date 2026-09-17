@@ -1,8 +1,8 @@
 CXX = g++ # le compilateur utilisé
 
 CXXFLAGS = -Wall -Wextra -std=c++17 -Iinclude # les options passées
-LDLIBS = -lcpr $(shell pkg-config --libs sdl3)
-CPPFLAGS = $(shell pkg-config --cflags sdl3)
+LDLIBS = -lcpr $(shell pkg-config --libs sdl3 sdl3-ttf)
+CPPFLAGS = $(shell pkg-config --cflags sdl3 sdl3-ttf)
 
 SRC = src/main.cpp src/Grille.cpp src/Jeu.cpp src/Window.cpp src/GameObject.cpp # la liste des fichiers .cpp à compiler ensemble
 

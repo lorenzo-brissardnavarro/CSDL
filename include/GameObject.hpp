@@ -2,6 +2,7 @@
 #define GAMEOBJECT_HPP
 
 #include <SDL3/SDL.h>
+#include <SDL3_ttf/SDL_ttf.h>
 
 // Classe abstraite
 class GameObject {

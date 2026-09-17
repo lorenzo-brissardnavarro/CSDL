@@ -3,6 +3,7 @@
 #include "json.hpp"
 #include <utility>
 #include <SDL3/SDL.h>
+#include <SDL3_ttf/SDL_ttf.h>
 
 class Grille {
 
