@@ -33,6 +33,7 @@ public:
     void dessiner(SDL_Renderer* pRenderer);
     bool chargerPolice();
     void deplacerSelection(int directionX, int directionY);
+    bool modifierCase(int valeur);
 
     ~Grille();
 };

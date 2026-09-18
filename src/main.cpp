@@ -12,14 +12,14 @@ int main() {
     jeu.initialiser();
 
     SDL_Event events;
-    bool isOpen = true;
+    bool ouvert = true;
     
 
-    while (isOpen) {
+    while (ouvert) {
         while (SDL_PollEvent(&events)) {
             switch (events.type) {
                 case SDL_EVENT_QUIT:
-                    isOpen = false;
+                    ouvert = false;
                     break;
                 case SDL_EVENT_KEY_DOWN:
                     jeu.gererClavier(events);

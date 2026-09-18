@@ -179,7 +179,7 @@ void Grille::dessiner(SDL_Renderer* pRenderer) {
                 couleur = {0, 180, 0, 0};
                 if (this->grille[i][j] != this->solution[i][j]) {
                     couleur = {255, 255, 0, 255};
-                }
+                } 
             }
 
             SDL_Surface* surface = TTF_RenderText_Blended(this->font, texte, 0, couleur); 
@@ -206,6 +206,23 @@ void Grille::deplacerSelection(int directionX, int directionY) {
         ligneActuelle = 8;
     if (ligneActuelle > 8)
         ligneActuelle = 0;
+}
+
+bool Grille::modifierCase(int valeur) {
+    if (grille[ligneActuelle][colonneActuelle] == solution[ligneActuelle][colonneActuelle]) {
+        return false;
+    }
+    if (!verifierLigne(ligneActuelle, colonneActuelle, valeur)) {
+        return false;
+    }
+    if (!verifierColonne(colonneActuelle, ligneActuelle, valeur)) {
+        return false;
+    }
+    if (!verifierCarre(ligneActuelle, colonneActuelle, valeur)) {
+        return false;
+    }
+    grille[ligneActuelle][colonneActuelle] = valeur;
+    return true;
 }
 
 // Destructeur pour libérer la mémoire

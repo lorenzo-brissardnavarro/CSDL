@@ -80,6 +80,42 @@ void Jeu::gererClavier(SDL_Event& event) {
         case SDLK_RIGHT:
             grille.deplacerSelection(1, 0);
             break;
+        case SDLK_1:
+        case SDLK_KP_1:
+            grille.modifierCase(1);
+            break;
+        case SDLK_2:
+        case SDLK_KP_2:
+            grille.modifierCase(2);
+            break;
+        case SDLK_3:
+        case SDLK_KP_3:
+            grille.modifierCase(3);
+            break;
+        case SDLK_4:
+        case SDLK_KP_4:
+            grille.modifierCase(4);
+            break;
+        case SDLK_5:
+        case SDLK_KP_5:
+            grille.modifierCase(5);
+            break;
+        case SDLK_6:
+        case SDLK_KP_6:
+            grille.modifierCase(6);
+            break;
+        case SDLK_7:
+        case SDLK_KP_7:
+            grille.modifierCase(7);
+            break;
+        case SDLK_8:
+        case SDLK_KP_8:
+            grille.modifierCase(8);
+            break;
+        case SDLK_9:
+        case SDLK_KP_9:
+            grille.modifierCase(9);
+            break;
         default:
             break;
     }
