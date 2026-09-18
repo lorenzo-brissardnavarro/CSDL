@@ -21,6 +21,9 @@ int main() {
                 case SDL_EVENT_QUIT:
                     isOpen = false;
                     break;
+                case SDL_EVENT_KEY_DOWN:
+                    jeu.gererClavier(events);
+                    break;
             }
         }
         SDL_SetRenderDrawColor(window.getRenderer(), 255, 255, 255, 255);

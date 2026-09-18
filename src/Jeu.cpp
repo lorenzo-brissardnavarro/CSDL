@@ -65,3 +65,22 @@ void Jeu::demarrerInterface(SDL_Renderer* pRenderer) {
     grille.chargerPolice();
     grille.dessiner(pRenderer);
 }
+
+void Jeu::gererClavier(SDL_Event& event) {
+    switch (event.key.key) {
+        case SDLK_UP:
+            grille.deplacerSelection(0, -1);
+            break;
+        case SDLK_DOWN:
+            grille.deplacerSelection(0, 1);
+            break;
+        case SDLK_LEFT:
+            grille.deplacerSelection(-1, 0);
+            break;
+        case SDLK_RIGHT:
+            grille.deplacerSelection(1, 0);
+            break;
+        default:
+            break;
+    }
+}

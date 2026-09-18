@@ -32,6 +32,7 @@ public:
     void setGrille(int ligne, int col, int valeur);
     void dessiner(SDL_Renderer* pRenderer);
     bool chargerPolice();
+    void deplacerSelection(int directionX, int directionY);
 
     ~Grille();
 };

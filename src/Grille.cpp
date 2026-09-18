@@ -167,7 +167,7 @@ void Grille::dessiner(SDL_Renderer* pRenderer) {
                 actuelle = false;
             }
 
-            Case caseSudoku(x, y, 50, 50, actuelle);
+            Case caseSudoku(x, y, 49, 49, actuelle);
             caseSudoku.dessiner(pRenderer);
 
             couleur = {0, 0, 0, 0};
@@ -176,7 +176,7 @@ void Grille::dessiner(SDL_Renderer* pRenderer) {
                 snprintf(texte, sizeof(texte), "X");
             } else {
                 snprintf(texte, sizeof(texte), "%d", this->grille[i][j]);
-                couleur = {0, 255, 0, 0};
+                couleur = {0, 180, 0, 0};
                 if (this->grille[i][j] != this->solution[i][j]) {
                     couleur = {255, 255, 0, 255};
                 }
@@ -192,6 +192,20 @@ void Grille::dessiner(SDL_Renderer* pRenderer) {
             SDL_DestroyTexture(texture);
         }
     }
+}
+
+void Grille::deplacerSelection(int directionX, int directionY) {
+    colonneActuelle += directionX;
+    ligneActuelle += directionY;
+
+    if (colonneActuelle < 0)
+        colonneActuelle = 8;
+    if (colonneActuelle > 8)
+        colonneActuelle = 0;
+    if (ligneActuelle < 0)
+        ligneActuelle = 8;
+    if (ligneActuelle > 8)
+        ligneActuelle = 0;
 }
 
 // Destructeur pour libérer la mémoire

@@ -14,6 +14,7 @@ public:
     void demarrer();
     void initialiser();
     void demarrerInterface(SDL_Renderer* pRenderer);
+    void gererClavier(SDL_Event& event);
 };
 
 #endif
