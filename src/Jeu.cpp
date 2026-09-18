@@ -53,9 +53,14 @@ void Jeu::demarrer() {
     texte = "\033[32mBravo, vous avez resolu le sudoku !\033[0m";
 }
 
-void Jeu::demarrerInterface(SDL_Renderer* pRenderer) {
+///////////////////////////////////////////////////////////// Méthodes interface graphique ///////////////////////////////////////////////
+
+void Jeu::initialiser() {
     auto [sudokuGrille, solutionGrille] = grille.initialiser();
     grille.remplirGrille(sudokuGrille);
     grille.remplirSolution(solutionGrille);
+}
+
+void Jeu::demarrerInterface(SDL_Renderer* pRenderer) {
     grille.dessiner(pRenderer);
 }

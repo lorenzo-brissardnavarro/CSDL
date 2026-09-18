@@ -41,6 +41,7 @@ public:
     void dessiner(SDL_Renderer* pRenderer) override;
 };
 
+
 // Classe enfant ligne qui hérite de la classe GameObject
 class Ligne : public GameObject {
 

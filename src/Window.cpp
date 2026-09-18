@@ -60,3 +60,5 @@ Window::~Window() {
     TTF_Quit();
     SDL_Quit();
 }
+
+

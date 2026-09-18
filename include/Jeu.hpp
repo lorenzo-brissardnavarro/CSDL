@@ -12,6 +12,7 @@ public:
     Jeu();
 
     void demarrer();
+    void initialiser();
     void demarrerInterface(SDL_Renderer* pRenderer);
 };
 

@@ -144,9 +144,12 @@ void Grille::setGrille(int ligne, int col, int valeur) {
 }
 
 
-///////////////////////////////////////////////////////////// Méthode interface graphique ///////////////////////////////////////////////
+///////////////////////////////////////////////////////////// Méthodes interface graphique ///////////////////////////////////////////////
 
 void Grille::dessiner(SDL_Renderer* pRenderer) {
+    TTF_Font* font = TTF_OpenFont("fonts/BebasNeue-Regular.ttf", 38);
+    char texte[3];
+    SDL_Color couleur = {0, 255, 0, 255};
     for (int i = 0; i < 9; ++i) {
         for (int j = 0; j < 9; ++j) {
             int x = 175 + j * 50;
@@ -154,6 +157,28 @@ void Grille::dessiner(SDL_Renderer* pRenderer) {
 
             Case caseSudoku(x, y, 50, 50);
             caseSudoku.dessiner(pRenderer);
+
+            couleur = {0, 0, 0, 0};
+
+            if (this->grille[i][j] == 0) {
+                snprintf(texte, sizeof(texte), "X");
+            } else {
+                snprintf(texte, sizeof(texte), "%d", this->grille[i][j]);
+                couleur = {0, 255, 0, 0};
+                if (this->grille[i][j] != this->solution[i][j]) {
+                    couleur = {255, 255, 0, 255};
+                }
+            }
+
+            SDL_Surface* surface = TTF_RenderText_Blended(font, texte, 0, couleur); 
+            SDL_Texture* texture = SDL_CreateTextureFromSurface(pRenderer, surface); 
+            float texteX = x + (50 - surface->w) / 2.0f;
+            float texteY = y + (50 - surface->h) / 2.0f;
+            SDL_FRect dest_rect = {texteX, texteY, (float)surface->w, (float)surface->h};
+            SDL_DestroySurface(surface); 
+            SDL_RenderTexture(pRenderer, texture, nullptr, &dest_rect);
+            SDL_DestroyTexture(texture);
         }
     }
+    TTF_CloseFont(font);
 }
