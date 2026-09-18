@@ -10,7 +10,7 @@ using json = nlohmann::json;
 
 
 Grille::Grille()
-    : grille{}, solution{}, font(nullptr), ligneActuelle(0), colonneActuelle(0)
+    : grille{}, solution{}, font(nullptr), ligneActuelle(0), colonneActuelle(0), message(""), messageErreur(false)
 {
 }
 
@@ -190,6 +190,21 @@ void Grille::dessiner(SDL_Renderer* pRenderer) {
             SDL_DestroySurface(surface); 
             SDL_RenderTexture(pRenderer, texture, nullptr, &dest_rect);
             SDL_DestroyTexture(texture);
+
+            if (!message.empty()) {
+                SDL_Color couleur;
+                if (messageErreur) {
+                    couleur = {255, 0, 0, 255};
+                } else {
+                    couleur = {0, 255, 0, 255};
+                }
+                SDL_Surface* surface = TTF_RenderText_Blended(this->font, message.c_str(), 0, couleur);
+                SDL_Texture* texture = SDL_CreateTextureFromSurface(pRenderer, surface);
+                SDL_FRect dest_rect = {(800 - surface->w) / 2.0f , 540, (float)surface->w, (float)surface->h};
+                SDL_DestroySurface(surface);
+                SDL_RenderTexture(pRenderer, texture, nullptr, &dest_rect);
+                SDL_DestroyTexture(texture);
+            }
         }
     }
 }
@@ -210,19 +225,27 @@ void Grille::deplacerSelection(int directionX, int directionY) {
 
 bool Grille::modifierCase(int valeur) {
     if (grille[ligneActuelle][colonneActuelle] == solution[ligneActuelle][colonneActuelle]) {
+        message = "Cette case contient deja le bon nombre";
+        messageErreur = true;
         return false;
-    }
-    if (!verifierLigne(ligneActuelle, colonneActuelle, valeur)) {
+    } else if (verifierLigne(ligneActuelle, colonneActuelle, valeur) == false) {
+        message = "Chiffre deja present sur la ligne";
+        messageErreur = true;
         return false;
-    }
-    if (!verifierColonne(colonneActuelle, ligneActuelle, valeur)) {
+    } else if (verifierColonne(colonneActuelle, ligneActuelle, valeur) == false) {
+        message = "Chiffre deja present sur la colonne";
+        messageErreur = true;
         return false;
-    }
-    if (!verifierCarre(ligneActuelle, colonneActuelle, valeur)) {
+    } else if (verifierCarre(ligneActuelle, colonneActuelle, valeur) == false) {
+        message = "Chiffre deja present dans le carre";
+        messageErreur = true;
         return false;
+    } else {
+        grille[ligneActuelle][colonneActuelle] = valeur;
+        message = "Chiffre ajoute";
+        messageErreur = false;
+        return true;
     }
-    grille[ligneActuelle][colonneActuelle] = valeur;
-    return true;
 }
 
 // Destructeur pour libérer la mémoire
