@@ -62,5 +62,6 @@ void Jeu::initialiser() {
 }
 
 void Jeu::demarrerInterface(SDL_Renderer* pRenderer) {
+    grille.chargerPolice();
     grille.dessiner(pRenderer);
 }

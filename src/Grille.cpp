@@ -10,7 +10,7 @@ using json = nlohmann::json;
 
 
 Grille::Grille()
-    : grille{}, solution{}
+    : grille{}, solution{}, font(nullptr)
 {
 }
 
@@ -146,8 +146,13 @@ void Grille::setGrille(int ligne, int col, int valeur) {
 
 ///////////////////////////////////////////////////////////// Méthodes interface graphique ///////////////////////////////////////////////
 
+bool Grille::chargerPolice() {
+    font = TTF_OpenFont("fonts/BebasNeue-Regular.ttf", 38);
+    return font != nullptr;
+}
+
+
 void Grille::dessiner(SDL_Renderer* pRenderer) {
-    TTF_Font* font = TTF_OpenFont("fonts/BebasNeue-Regular.ttf", 38);
     char texte[3];
     SDL_Color couleur = {0, 255, 0, 255};
     for (int i = 0; i < 9; ++i) {
@@ -170,7 +175,7 @@ void Grille::dessiner(SDL_Renderer* pRenderer) {
                 }
             }
 
-            SDL_Surface* surface = TTF_RenderText_Blended(font, texte, 0, couleur); 
+            SDL_Surface* surface = TTF_RenderText_Blended(this->font, texte, 0, couleur); 
             SDL_Texture* texture = SDL_CreateTextureFromSurface(pRenderer, surface); 
             float texteX = x + (50 - surface->w) / 2.0f;
             float texteY = y + (50 - surface->h) / 2.0f;
@@ -180,5 +185,11 @@ void Grille::dessiner(SDL_Renderer* pRenderer) {
             SDL_DestroyTexture(texture);
         }
     }
-    TTF_CloseFont(font);
+}
+
+// Destructeur pour libérer la mémoire
+Grille::~Grille() {
+    if (font != nullptr) {
+        TTF_CloseFont(font);
+    }
 }
