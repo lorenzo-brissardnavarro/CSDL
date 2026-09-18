@@ -12,6 +12,8 @@ private:
     int grille[9][9];
     int solution[9][9];
     TTF_Font* font;
+    int ligneActuelle;
+    int colonneActuelle;
 
 public:
 

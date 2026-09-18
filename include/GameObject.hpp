@@ -34,9 +34,12 @@ public:
 // Classe enfant case qui hérite de la classe GameObject
 class Case : public GameObject {
 
+private:
+    bool actuelle;
+
 public:
 
-    Case(int coordonneeX, int coordonneeY, int tailleX, int tailleY);
+    Case(int coordonneeX, int coordonneeY, int tailleX, int tailleY, bool actuelle);
 
     void dessiner(SDL_Renderer* pRenderer) override;
 };

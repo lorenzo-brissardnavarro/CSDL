@@ -10,7 +10,7 @@ using json = nlohmann::json;
 
 
 Grille::Grille()
-    : grille{}, solution{}, font(nullptr)
+    : grille{}, solution{}, font(nullptr), ligneActuelle(0), colonneActuelle(0)
 {
 }
 
@@ -154,13 +154,20 @@ bool Grille::chargerPolice() {
 
 void Grille::dessiner(SDL_Renderer* pRenderer) {
     char texte[3];
+    bool actuelle;
     SDL_Color couleur = {0, 255, 0, 255};
     for (int i = 0; i < 9; ++i) {
         for (int j = 0; j < 9; ++j) {
             int x = 175 + j * 50;
             int y = 75 + i * 50;
 
-            Case caseSudoku(x, y, 50, 50);
+            if(i == this->ligneActuelle && j == this->colonneActuelle) {
+                actuelle = true;
+            } else {
+                actuelle = false;
+            }
+
+            Case caseSudoku(x, y, 50, 50, actuelle);
             caseSudoku.dessiner(pRenderer);
 
             couleur = {0, 0, 0, 0};

@@ -8,16 +8,20 @@ GameObject::GameObject(int coordonneeX, int coordonneeY, int tailleX, int taille
 {
 }
 
-Case::Case(int coordonneeX, int coordonneeY, int tailleX, int tailleY)
-    : GameObject(coordonneeX, coordonneeY, tailleX, tailleY)
+Case::Case(int coordonneeX, int coordonneeY, int tailleX, int tailleY, bool actuelle)
+    : GameObject(coordonneeX, coordonneeY, tailleX, tailleY),
+    actuelle(actuelle)
 {
 }
 
+
 void Case::dessiner(SDL_Renderer* pRenderer) {
-    SDL_FRect caseSudoku;
-    caseSudoku.x = this->coordonneeX;
-    caseSudoku.y = this->coordonneeY;
-    caseSudoku.w = this->tailleX;
-    caseSudoku.h = this->tailleY;
-    SDL_RenderRect(pRenderer, &caseSudoku);
+    SDL_FRect caseSudoku = {(float)this->coordonneeX, (float)this->coordonneeY, (float)this->tailleX, (float)this->tailleY};
+    if (this->actuelle) {
+        SDL_SetRenderDrawColor(pRenderer, 180, 180, 180, 255);
+        SDL_RenderFillRect(pRenderer, &caseSudoku);
+    } else {
+        SDL_SetRenderDrawColor(pRenderer, 0, 0, 0, 0);
+        SDL_RenderRect(pRenderer, &caseSudoku);
+    }
 }
